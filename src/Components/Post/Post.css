@@ -1,0 +1,37 @@
+.post {
+  width: 100%;  
+  text-align: center;  
+  font-size: 20px;
+  background-color: rgb(245, 244, 244);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.post > img {
+  object-fit: contain;
+  width: 100%;
+}
+
+.post > p {
+  margin: 10px 0;
+}
+
+.post > p:nth-child(3) {
+  font-size: 19px;
+}
+
+.post > .post__price {
+  /* display: flex; */
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.post__address {
+  display: flex;
+  color: #030303;
+  opacity: 0.75;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+}

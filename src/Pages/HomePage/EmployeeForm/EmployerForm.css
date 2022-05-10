@@ -1,0 +1,86 @@
+.ee-form {
+  display: flex;
+  justify-content: space-between;
+  width: 1300px;
+  padding: 30px 30px 40px 30px;
+  background-color: #EBF6EA;
+  margin: 5% auto;
+}
+
+.ee-form > .ee-form__col-1 {
+  width: 50%;
+}
+
+.ee-form__col-1 > .ee-form__img {
+  width: 500px;
+  height: 420px;
+  background-color: #EEF2EE;
+  text-align: center;
+  border: 1px dotted #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+.ee-form__col-1 > .ee-form__description > textarea {
+  width: 500px;
+  height: 560px;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.ee-form > .ee-form__col-2 {
+  width: 50%;
+}
+
+.ee-form > .ee-form__col-2 > .ee-form__input > h4 {
+  margin-bottom: 10px;
+}
+
+.ee-form > .ee-form__col-2 > .ee-form__input > .ee-form__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 580px;
+}
+
+
+.ee-form input[type="text"],
+.ee-form select {
+  width: 580px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #FCFDFC;
+  border: 1px solid #9E9191;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  margin-bottom: 40px;
+  padding-left: 10px;
+  outline: none;
+}
+
+.ee-form__col-2 > .ee-form__input > .ee-form__row > input {
+  width: 265px;
+}
+
+.ee-form__col-2 > .ee-form__buttons {
+  width: 580px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ee-form__col-2 > .ee-form__buttons > button {
+  width: 250px;
+  height: 70px;
+  font-size: 25px;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+}
+
+.ee-form__col-2 > .ee-form__buttons > button:hover {
+  cursor: pointer;
+}

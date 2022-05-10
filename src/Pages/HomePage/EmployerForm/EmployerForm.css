@@ -1,0 +1,87 @@
+.er-form {
+  display: flex;
+  justify-content: space-between;
+  width: 1300px;
+  padding: 30px 30px 40px 30px;
+  background-color: #EBF6EA;
+  margin: 5% auto;
+}
+
+.er-form > .er-form__col-1 {
+  width: 50%;
+}
+
+.er-form__col-1 > .er-form__img {
+  width: 500px;
+  height: 420px;
+  background-color: #EEF2EE;
+  text-align: center;
+  border: 1px dotted #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+.er-form__col-1 > .er-form__description > textarea {
+  width: 500px;
+  height: 560px;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.er-form > .er-form__col-2 {
+  width: 50%;
+}
+
+.er-form > .er-form__col-2 > .er-form__input > h4 {
+  margin-bottom: 10px;
+}
+
+.er-form > .er-form__col-2 > .er-form__input > .er-form__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 580px;
+}
+
+
+.er-form input[type="text"],
+.er-form input[type="date"],
+.er-form select {
+  width: 580px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #FCFDFC;
+  border: 1px solid #9E9191;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  margin-bottom: 40px;
+  padding-left: 10px;
+  outline: none;
+}
+
+.er-form__col-2 > .er-form__input > .er-form__row > input {
+  width: 265px;
+}
+
+.er-form__col-2 > .er-form__buttons {
+  width: 580px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.er-form__col-2 > .er-form__buttons > button {
+  width: 250px;
+  height: 70px;
+  font-size: 25px;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+}
+
+.er-form__col-2 > .er-form__buttons > button:hover {
+  cursor: pointer;
+}
