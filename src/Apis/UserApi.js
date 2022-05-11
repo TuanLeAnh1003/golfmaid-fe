@@ -15,8 +15,14 @@ const getMe = async (data) => {
   return await axiosInstance.get(`/users/getMe/${data.userId}`)
 }
 
+const updateUser = async (data) => {
+  console.log(data);
+  return await axiosInstance.put("/users/", data)
+}
+
 export default {
   login,
   register,
-  getMe
+  getMe,
+  updateUser
 }

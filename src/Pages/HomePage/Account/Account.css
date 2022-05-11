@@ -114,6 +114,8 @@
 
 .account-info-right {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .account-info-right-image {
@@ -142,4 +144,23 @@
 
 .logout:hover {
   cursor: pointer;
+}
+
+.account-info-right-btn {
+  background-color: #39A388;
+  width: 100px;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.account-info-right-btn:hover {
+  background-color: #5aa290;
+
 }

@@ -6,10 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useParams } from 'react-router-dom';
 import userApi from '../../../Apis/UserApi';
 import autoAvatar from '../../../Assets/Images/avatarclone.jpg';
-
+// import { ImageUpload } from 'react-ipfs-uploader'
+import { uploadFile, deleteFile } from "../../../firebase/util";
 
 function Account() {
-
+  const [image, setImage] = useState()
+  const [progress, setProgress] = useState()
+  const [urlImage, setUrlImage] = useState()
   const { id } = useParams();
 
   const [user, setUser] = useState({})
@@ -17,16 +20,6 @@ function Account() {
   useEffect(() => {
     userApi.getMe({userId: localStorage.getItem("userid")})
     .then(data => setUser({...data}));
-
-    // const listGender = document.querySelectorAll('.account-info-left-item-gender > input[name="gender"]');
-    // console.log(Array.from(listGender));
-    // listGender = Array.from(listGender);
-
-    // listGender.forEach((item, index) => {
-    //   if(item.attributes[index].value === user.gender) {
-    //     item.attributes[index].checked === true;
-    //   }
-    // })
 
   }, []);
 
@@ -37,11 +30,35 @@ function Account() {
     navigator('./');
   }
 
+  const handleChangeImage = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
 
-  const [selectedImage, setSelectedImage] = useState(null)
+  useEffect(()=> {
+    if (image !== null) {
+      console.log(image)
+      uploadFile(
+      image,
+      (progress) => {
+        setProgress(progress);
+      },
+      (url) => {
+        setUrlImage(url)
+        console.log(urlImage);
+      }
+      );
+    }
+  },[image]);
 
-  const handleSubmit = () => {
-
+  const handleSubmit = async () => {
+    await userApi.updateUser({
+      userId: localStorage.getItem("userid"),
+      image: urlImage
+    }) .then ((res) => {
+      console.log(res);
+    })
   }
 
   return (
@@ -101,17 +118,21 @@ function Account() {
           </div>
 
           <div className="account-info-right">
-            {
-              (selectedImage === null) ? (
-                <img className="account-info-right-image" src={user.image ? user.image : autoAvatar} alt="" />
-              ) : (
-                <img className="account-info-right-image" src={window.URL.createObjectURL(selectedImage)} alt="" />
-              )
-            }
-            <input type="file" name="Chọn ảnh" onChange={e => setSelectedImage(e.target.files[0])} />
+            <input 
+              accept="image/*"
+              type="file"
+              name="add-img"
+              id="add-img"
+              onChange={handleChangeImage}
+            />
+            <img
+              className="account-info-right-image"
+              src={image !== undefined ? window.URL.createObjectURL(image) : (user.image !== undefined ? user.image : 'https://via.placeholder.com/50')}
+              alt=''
+            />
           </div>
         </div>
-        <input className="account-info-submit" type="submit" onClick={handleSubmit} value="LƯU"/>
+        <input className="account-info-submit" onClick={handleSubmit} value="LƯU"/>
       </form>  
     </div>
   )
