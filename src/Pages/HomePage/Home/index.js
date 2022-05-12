@@ -101,6 +101,10 @@ function Home() {
     // console.log(num);
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="home">
       <img src={bigImg} alt="big-img" />

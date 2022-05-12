@@ -1,163 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './NewsManagement.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Link } from 'react-router-dom'
 import FamilyImage from "./../../../Assets/Images/family-image.svg";
 import HouseHelperImage from "./../../../Assets/Images/house-helper.svg";
+import PostApi from '../../../Apis/PostApi'
 
 function NewsManagement() {
   const [hideDeletePopup, setHideDeletePopup] = useState(false)
+  const [postList, setPostList] = useState()
 
-  const postList = [
-    {
-      id: "P001",
-      img: FamilyImage,
-      gender: "female",
-      name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-      workplace: "Gia đình",
-      price: "7.000.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employer",
-    },
-    {
-      id: "P002",
-      img: FamilyImage,
-      gender: "female",
-      name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-      workplace: "Gia đình",
-      price: "7.000.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employer",
-    },
-    {
-      id: "P003",
-      img: FamilyImage,
-      gender: "female",
-      name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-      workplace: "Gia đình",
-      price: "7.000.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employer",
-    },
-    {
-      id: "P004",
-      img: FamilyImage,
-      gender: "female",
-      name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-      workplace: "Gia đình",
-      price: "7.000.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employer",
-    },
-    {
-      id: "P005",
-      img: FamilyImage,
-      gender: "female",
-      name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-      workplace: "Gia đình",
-      price: "7.000.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employer",
-    },
-    {
-      id: "P006",
-      img: FamilyImage,
-      gender: "female",
-      name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-      workplace: "Gia đình",
-      price: "7.000.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employer",
-    },
-    {
-      id: "P007",
-      img: FamilyImage,
-      gender: "female",
-      name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-      workplace: "Gia đình",
-      price: "7.000.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employer",
-    },
-    {
-      id: "P008",
-      img: FamilyImage,
-      gender: "female",
-      name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-      workplace: "Gia đình",
-      price: "7.000.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employer",
-    },
-    {
-      id: "P009",
-      img: FamilyImage,
-      gender: "female",
-      name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-      workplace: "Gia đình",
-      price: "7.000.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employer",
-    },
-    {
-      id: "P010",
-      img: FamilyImage,
-      gender: "female",
-      name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-      workplace: "Gia đình",
-      price: "7.000.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employer",
-    },
-    {
-      id: "P011",
-      img: FamilyImage,
-      gender: "female",
-      name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-      workplace: "Gia đình",
-      price: "7.000.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employer",
-    },
-    {
-      id: "P012",
-      img: FamilyImage,
-      gender: "female",
-      name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-      workplace: "Gia đình",
-      price: "7.000.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employer",
-    },
-    {
-      id: "P013",
-      img: FamilyImage,
-      gender: "female",
-      name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-      workplace: "Gia đình",
-      price: "7.000.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employer",
-    },
-    {
-      id: "P014",
-      img: HouseHelperImage,
-      gender: "male",
-      name: "Nữ giúp việc - Lê Anh Tuấn",
-      firstName: "Tuấn",
-      lastName: "Lê Anh",
-      phoneNumber: "0938269974",
-      address: "64/15 Nguyên Hồng Phường 1 Gò Vấp",
-      workplace: "Gia đình, cá nhân, công ty",
-      price: "7.500.000đ",
-      generalAddress: "TP Hồ Chí Minh",
-      type: "employee",
-      expertise: ["Vệ sinh nhà cửa", "Chăm con cái"],
-      advantage: "Khỏe mạnh, thật thà, nhanh nhẹn",
-      experience: "1 năm"
-    },
-  ];
+  useEffect(() => {
+    PostApi.getAll()
+      .then(async (res) => {
+        await setPostList(res)
+      })
+  }, [])
 
   return (
     <div className="news-mng">
@@ -184,7 +43,7 @@ function NewsManagement() {
           </tr>
         </thead>
         <tbody>
-          {postList.map((news, i) => (
+          {postList?.map((news, i) => (
             <tr key={i}>
               <td>{news.id}</td>
               <td>{news.img}</td>

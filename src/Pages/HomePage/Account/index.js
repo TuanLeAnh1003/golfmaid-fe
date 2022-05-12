@@ -8,19 +8,30 @@ import userApi from '../../../Apis/UserApi';
 import autoAvatar from '../../../Assets/Images/avatarclone.jpg';
 // import { ImageUpload } from 'react-ipfs-uploader'
 import { uploadFile, deleteFile } from "../../../firebase/util";
+import moment from "moment";
 
 function Account() {
   const [image, setImage] = useState()
   const [progress, setProgress] = useState()
   const [urlImage, setUrlImage] = useState()
-  const { id } = useParams();
-
+  
   const [user, setUser] = useState({})
+  const [lastName, setLastName] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [gender, setGender] = useState('')
+  const [birthday, setBirthday] = useState('')
+  const { id } = useParams();
 
   useEffect(() => {
     userApi.getMe({userId: localStorage.getItem("userid")})
     .then(data => setUser({...data}));
 
+    setLastName(user.lastName)
+    setFirstName(user.firstName)
+    setPhone(user.phone)
+    setGender(user.gender)
+    setBirthday(user.birthday)
   }, []);
 
   const handleLogOut = () => {
@@ -55,11 +66,23 @@ function Account() {
   const handleSubmit = async () => {
     await userApi.updateUser({
       userId: localStorage.getItem("userid"),
-      image: urlImage
-    }) .then ((res) => {
-      console.log(res);
+      image: urlImage,
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phone,
+      gender: gender,
+      birthday: new Date(birthday), 
+    }) .then (async (res) => {
+      if (res.image !== undefined) {
+        alert("Thay đổi thành công")
+        // window.location.reload();
+      }
     })
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className="account">
@@ -83,26 +106,26 @@ function Account() {
           <div className="account-info-left">
             <div className="account-info-left-item">
               <label>Họ:</label>
-              <input type="text" placeholder={user.lastName} name="lastName"/>
+              <input type="text" placeholder={user.lastName} name="lastName" onChange={e => setLastName(e.target.value)}/>
             </div>
             <div className="account-info-left-item">
               <label>Tên:</label>
-              <input type="text" placeholder={user.firstName} name="firstName"/>
+              <input type="text" placeholder={user.firstName} name="firstName" onChange={e => setFirstName(e.target.value)}/>
             </div>
             <div className="account-info-left-item">
               <label>Email:</label>
-              <input type="email" placeholder={user.email} name="email"/>
+              <input type="email" style={{backgroundColor: '#a0a0a0', color: '#000'}} placeholder={user.email} name="email" disabled/>
             </div>
             <div className="account-info-left-item">
               <label>Số điện thoại:</label>
-              <input type="text" placeholder={user.phoneNumber} name="phoneNumber"/>
+              <input type="text" placeholder={user.phoneNumber} name="phoneNumber" onChange={e => setPhone(e.target.value)}/>
             </div>
             <div className="account-info-left-item">
               <label>Giới tính:</label>
               <div className="account-info-left-item-gender">
-                <input type="radio" name="gender" value="Nam"/><label> Nam</label>
-                <input type="radio" name="gender" value="Nữ"/><label> Nữ</label>
-                <input type="radio" name="gender" value="Khác"/><label> Khác</label>
+                <input type="radio" name="gender" value="Nam" onChange={e => setGender(e.target.value)}/><label> Nam</label>
+                <input type="radio" name="gender" value="Nữ" onChange={e => setGender(e.target.value)}/><label> Nữ</label>
+                <input type="radio" name="gender" value="Khác" onChange={e => setGender(e.target.value)}/><label> Khác</label>
               </div>
             </div>
             <div className="account-info-left-item">
@@ -110,9 +133,10 @@ function Account() {
               <input 
                 type="text" 
                 max={Date.now()} 
-                placeholder={user.birthday} 
+                placeholder={moment(user.birthday).format('DD-MM-YYYY')} 
                 onBlur={e => e.target.type='text'} 
                 onFocus={e => e.target.type='date'}
+                onChange={e => setBirthday(e.target.value)}
               />
             </div>
           </div>

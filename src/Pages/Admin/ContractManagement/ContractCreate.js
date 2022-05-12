@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./ContractCreate.css";
 import { Link } from "react-router-dom";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ContractApi from "../../../Apis/ContractApi";
 
 function ContractCreate() {

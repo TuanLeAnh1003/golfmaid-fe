@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Creator from "../../../Components/Creater/Creator";
 import about1 from "./../../../Assets/Images/about-1.png";
 import about2 from "./../../../Assets/Images/about-2.png";
@@ -37,6 +37,10 @@ function About() {
         position: "Cinemas & Service",
         color: "#F5859E",
       }];
+
+      useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
 
   return (
     <div className="about">

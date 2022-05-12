@@ -1,56 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './NewsManagement.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Link } from 'react-router-dom'
 import FamilyImage from "./../../../Assets/Images/family-image.svg";
 import HouseHelperImage from "./../../../Assets/Images/house-helper.svg";
+import ContractApi from "../../../Apis/ContractApi";
+import moment from "moment"
 
 function ContractManagement() {
   const [hideDeletePopup, setHideDeletePopup] = useState(false)
+  const [contractList, setContractList] = useState([])
 
-  const contractList = [
-    {
-      create_at: new Date("2022-05-08"),
-      contractId: "CT001",
-      employer: "Lê Anh Tuấn",
-      employee: "Nguyễn Duy An",
-      startDate: new Date("2022-05-08"),
-      endDate: new Date("2022-06-08"),
-      workingTime: "1 tháng",
-      price: 7500000
-    },
-    {
-      create_at: new Date("2022-05-08"),
-      contractId: "CT001",
-      employer: "Lê Anh Tuấn",
-      employee: "Nguyễn Duy An",
-      startDate: new Date("2022-05-08"),
-      endDate: new Date("2022-06-08"),
-      workingTime: "1 tháng",
-      price: 7500000
-    },
-    {
-      create_at: new Date("2022-05-08"),
-      contractId: "CT001",
-      employer: "Lê Anh Tuấn",
-      employee: "Nguyễn Duy An",
-      startDate: new Date("2022-05-08"),
-      endDate: new Date("2022-06-08"),
-      workingTime: "1 tháng",
-      price: 7500000
-    },
-    {
-      create_at: new Date("2022-05-08"),
-      contractId: "CT001",
-      employer: "Lê Anh Tuấn",
-      employee: "Nguyễn Duy An",
-      startDate: new Date("2022-05-08"),
-      endDate: new Date("2022-06-08"),
-      workingTime: "1 tháng",
-      price: 7500000
-    },
-  ]
+
+  useEffect(() => {
+    ContractApi.getContracts()
+      .then((res) => {
+        setContractList(res)
+      })
+  }, [])
 
   return (
     <div className="news-mng">
@@ -81,8 +49,8 @@ function ContractManagement() {
               <td>{contract.contractId}</td>
               <td>{contract.employee}</td>
               <td>{contract.employer}</td>
-              <td>{contract.startDate.toLocaleDateString('pt-PT')}</td>
-              <td>{contract.endDate.toLocaleDateString('pt-PT')}</td>
+              <td>{moment(contract.startDate).format('DD-MM-YYYY')}</td>
+              <td>{moment(contract.endDate).format('DD-MM-YYYY')}</td>
               <td>{contract.price}</td>
               <td>{contract.workingTime}</td>
               <td>

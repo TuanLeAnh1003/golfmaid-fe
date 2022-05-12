@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './EmployerForm.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -7,6 +7,10 @@ import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import
 function EmployeeForm() {
 
   const [selectedImage, setSelectedImage] = useState(null)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className="ee-form">
