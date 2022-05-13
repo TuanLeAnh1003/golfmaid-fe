@@ -17,6 +17,7 @@ import ContractUpdate from '../ContractManagement/ContractUpdate';
 
 import './Admin.css';
 import CommentManagement from '../CommentManagement';
+import AdminRoute from '../../../Routes/AdminRoute';
 
 
 function Admin() {

@@ -205,7 +205,7 @@ function PostDetail() {
                       
                       <div className="pro-detail__employee-profile">
                         <div className="pro-detail__employee-profile-left">
-                          <h2>{element.author[0].lastName} {element.author[0].firstName}</h2>
+                          <h2>{element.author[0].firstName} {element.author[0].lastName}</h2>
                           <div>
                             <FontAwesomeIcon icon={solid("mars-and-venus")} />
                             <p>Giới tính: {element.author[0]?.gender === "male" ? "Nam" : "Nữ"}</p>
@@ -223,7 +223,7 @@ function PostDetail() {
                             <p>Địa chỉ: {element.author[0].address.general}</p>
                           </div>
                         </div>
-                        <img src={element.author[0]?.image} alt="profile-img" />
+                        <img style={{ width: '300px', height: 'fit'}} src={element.image} alt="profile-img" />
                       </div>
 
                       <h3>MỤC TIÊU NGHỀ NGHIỆP</h3>

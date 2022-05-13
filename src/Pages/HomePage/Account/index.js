@@ -35,7 +35,8 @@ function Account() {
 
   const handleLogOut = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("userid");   
+    localStorage.removeItem("userid");  
+    localStorage.removeItem("role"); 
     window.location.reload();
     navigator('./');
   }
