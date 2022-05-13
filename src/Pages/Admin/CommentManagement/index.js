@@ -1,37 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './CommentManagement.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Link } from 'react-router-dom'
 import FamilyImage from "./../../../Assets/Images/family-image.svg";
 import HouseHelperImage from "./../../../Assets/Images/house-helper.svg";
+import CommentApi from '../../../Apis/CommentApi'
 
 function CommentManagement() {
   const [hideDeletePopup, setHideDeletePopup] = useState(false)
+  const [commentList, setCommentList] = useState()
 
-  const commentList = [
-    {
-      commentId: "CM001",
-      author: "Duy An",
-      postId: "P001",
-      content:
-        "Người giúp việc tôi thuê được 3 tháng để chăm cho con tôi rồi, làm việc rất chuyên nghiệp và tử tế. ",
-    },
-    {
-      commentId: "CM002",
-      author: "Duy An",
-      postId: "P001",
-      content:
-        "Người giúp việc tôi thuê được 3 tháng để chăm cho con tôi rồi, làm việc rất chuyên nghiệp và tử tế. ",
-    },
-    {
-      commentId: "CM003",
-      author: "Duy An",
-      postId: "P001",
-      content:
-        "Người giúp việc tôi thuê được 3 tháng để chăm cho con tôi rồi, làm việc rất chuyên nghiệp và tử tế. ",
-    },
-  ];
+  useEffect(() => {
+    CommentApi.getAll()
+      .then(res => {
+        setCommentList(res)
+      })
+  }, [])
 
   return (
     <div className="news-mng">
@@ -53,7 +38,7 @@ function CommentManagement() {
           </tr>
         </thead>
         <tbody>
-          {commentList.map((comment, i) => (
+          {commentList?.map((comment, i) => (
             <tr key={i}>
               <td>{comment.commentId}</td>
               <td>{comment.author}</td>

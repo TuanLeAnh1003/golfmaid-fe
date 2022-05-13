@@ -87,7 +87,7 @@ function Search({searchContent}) {
                   <div className="search-list-item">
                     <Post 
                       key={index} 
-                      img={element.author[0]?.image}
+                      img={element.image}
                       title={element.title}
                       price={element.price}
                       workplace={element.detail.workplace}

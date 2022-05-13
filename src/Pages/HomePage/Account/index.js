@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useParams } from 'react-router-dom';
 import userApi from '../../../Apis/UserApi';
 import autoAvatar from '../../../Assets/Images/avatarclone.jpg';
-// import { ImageUpload } from 'react-ipfs-uploader'
 import { uploadFile, deleteFile } from "../../../firebase/util";
 import moment from "moment";
 

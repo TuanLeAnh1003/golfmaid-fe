@@ -12,9 +12,9 @@ function NewsManagement() {
   const [postList, setPostList] = useState()
 
   useEffect(() => {
-    PostApi.getAll()
-      .then(async (res) => {
-        await setPostList(res)
+    PostApi.getPostsAndAuthor()
+      .then(res => {
+        setPostList(res)
       })
   }, [])
 
@@ -34,7 +34,7 @@ function NewsManagement() {
               <th>PostId</th>
               <th>Hình ảnh</th>
               <th>Giới tính</th>
-              <th>Tên</th>
+              <th>Chủ đề</th>
               <th>Nơi làm việc</th>
               <th>Tiền</th>
               <th>Địa chỉ</th>
@@ -43,16 +43,16 @@ function NewsManagement() {
           </tr>
         </thead>
         <tbody>
-          {postList?.map((news, i) => (
+          {postList?.map((post, i) => (
             <tr key={i}>
-              <td>{news.id}</td>
-              <td>{news.img}</td>
-              <td>{news.gender}</td>
-              <td>{news.name}</td>
-              <td>{news.workplace}</td>
-              <td>{news.price}</td>
-              <td>{news.generalAddress}</td>
-              <td>{news.type}</td>
+              <td>{post.postId}</td>
+              <td style={{width: '50px', flexWrap: 'wrap'}}>{post.image.length > 10 ? `${post.image.slice(0,20)}...` : post.image}</td>
+              <td>{post.author[0]?.gender}</td>
+              <td>{post.title}</td>
+              <td>{post.detail.workplace}</td>
+              <td>{post.price}đ</td>
+              <td>{post.author[0]?.address.general}</td>
+              <td>{post.type}</td>
               <td>
                 <FontAwesomeIcon icon={solid('eye')} />{"  "}
                 <Link to="/admin/post-update" style={{textDecoration: 'none', color: '#855446'}}>

@@ -61,6 +61,20 @@
   outline: none;
 }
 
+.ee-form input[type="number"],
+.ee-form select {
+  width: 580px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #FCFDFC;
+  border: 1px solid #9E9191;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  margin-bottom: 40px;
+  padding-left: 10px;
+  outline: none;
+}
+
+
 .ee-form__col-2 > .ee-form__input > .ee-form__row > input {
   width: 265px;
 }
@@ -83,4 +97,17 @@
 
 .ee-form__col-2 > .ee-form__buttons > button:hover {
   cursor: pointer;
+}
+
+.ee-form__buttons-submit {
+  width: 250px;
+  height: 70px;
+  font-size: 25px;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

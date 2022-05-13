@@ -20,9 +20,14 @@ const updateUser = async (data) => {
   return await axiosInstance.put("/users/", data)
 }
 
+const getAll = async (data) => {
+  return await axiosInstance.get('/users/')
+}
+
 export default {
   login,
   register,
   getMe,
-  updateUser
+  updateUser,
+  getAll
 }

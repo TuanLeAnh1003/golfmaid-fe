@@ -37,102 +37,11 @@ function HouseHelper() {
     }
   ]
 
-  const familyList = [{
-    id: "P001",
-    img: FamilyImage,
-    name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-    workplace: "Gia đình",
-    price: "7.000.000đ",
-    generalAddress: "TP Hồ Chí Minh"
-  }, {
-    id: "P002",
-    img: FamilyImage,
-    name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-    workplace: "Gia đình",
-    price: "7.000.000đ",
-    generalAddress: "TP Hồ Chí Minh"
-  }, {
-    id: "P003",
-    img: FamilyImage,
-    name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-    workplace: "Gia đình",
-    price: "7.000.000đ",
-    generalAddress: "TP Hồ Chí Minh"
-  }, {
-    id: "P004",
-    img: FamilyImage,
-    name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-    workplace: "Gia đình",
-    price: "7.000.000đ",
-    generalAddress: "TP Hồ Chí Minh"
-  }, {
-    id: "P005",
-    img: FamilyImage,
-    name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-    workplace: "Gia đình",
-    price: "7.000.000đ",
-    generalAddress: "TP Hồ Chí Minh"
-  }, {
-    id: "P006",
-    img: FamilyImage,
-    name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-    workplace: "Gia đình",
-    price: "7.000.000đ",
-    generalAddress: "TP Hồ Chí Minh"
-  }, {
-    id: "P007",
-    img: FamilyImage,
-    name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-    workplace: "Gia đình",
-    price: "7.000.000đ",
-    generalAddress: "TP Hồ Chí Minh"
-  }, {
-    id: "P008",
-    img: FamilyImage,
-    name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-    workplace: "Gia đình",
-    price: "7.000.000đ",
-    generalAddress: "TP Hồ Chí Minh"
-  }, {
-    id: "P009",
-    img: FamilyImage,
-    name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-    workplace: "Gia đình",
-    price: "7.000.000đ",
-    generalAddress: "TP Hồ Chí Minh"
-  }, {
-    id: "P010",
-    img: FamilyImage,
-    name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-    workplace: "Gia đình",
-    price: "7.000.000đ",
-    generalAddress: "TP Hồ Chí Minh"
-  }, {
-    id: "P011",
-    img: FamilyImage,
-    name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-    workplace: "Gia đình",
-    price: "7.000.000đ",
-    generalAddress: "TP Hồ Chí Minh"
-  }, {
-    id: "P012",
-    img: FamilyImage,
-    name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-    workplace: "Gia đình",
-    price: "7.000.000đ",
-    generalAddress: "TP Hồ Chí Minh"
-  }, {
-    id: "P013",
-    img: FamilyImage,
-    name: "Chính chủ tuyển nữ giúp việc nhà ở lại",
-    workplace: "Gia đình",
-    price: "7.000.000đ",
-    generalAddress: "TP Hồ Chí Minh"
-  }]
-
   useEffect(() => {
     PostApi.getListHouseHelper()
       .then(res => {
+        console.log(res);
+
         setListHouseHelper(res)
       })
   }, [])
@@ -140,7 +49,6 @@ function HouseHelper() {
   useEffect(() => {
     PostApi.getListFindHouseHelper()
       .then(res => {
-        console.log(res);
         setListFindHouseHelper(res)
       })
   }, [])
@@ -213,12 +121,12 @@ function HouseHelper() {
                   listHouseHelper.map((element, index) => (
                     <Link to={`/post-detail/${element.postId}`} key={index} className="findHousehelper__family-list-item">
                       <Post
-                        img= {element.author[0]?.image}
-                        name= {element.name}
+                        img= {element.image}
+                        title= {element.title}
                         type= {element.type}
                         workplace= {element.detail.workplace}
                         price= {element.price}
-                        address= {element.author[0]?.address.general}
+                        address= {element.detail.generalAddress}
                       ></Post>
                     </Link>
                   ))

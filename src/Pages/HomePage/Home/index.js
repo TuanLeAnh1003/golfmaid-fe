@@ -172,7 +172,7 @@ function Home() {
                   <div className="home__contract">
                     <Post
                         ref={product}
-                        img={item.author[0]?.image || "https://via.placeholder.com/200"}
+                        img={item.image || "https://via.placeholder.com/200"}
                         title={item.title}
                         type={item.type}
                         price={item.price}

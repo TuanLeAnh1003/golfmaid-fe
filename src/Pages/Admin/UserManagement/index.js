@@ -1,68 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './UserManagement.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Link } from 'react-router-dom'
+import UserApi from '../../../Apis/UserApi';
 
 function UserManagement() {
   const [hideDeletePopup, setHideDeletePopup] = useState(false)
+  const [listUser, setListUser] = useState()
 
-  const listUser = [
-    {
-      lastName: 'Nguyễn',
-      firstName: 'Duy An',
-      phoneNumber: '132154877',
-      birthday: '16-01-2001',
-      email: 'duyan@gmail.com',
-      gender: 'ăbudiuwqdbijhqwjkn',
-      role: 'admin'
-    },
-    {
-      lastName: 'Nguyễn',
-      firstName: 'Duy An',
-      phoneNumber: '132154877',
-      birthday: '16-01-2001',
-      email: 'duyan@gmail.com',
-      gender: 'ăbudiuwqdbijhqwjkn',
-      role: 'admin'
-    },
-    {
-      lastName: 'Nguyễn',
-      firstName: 'Duy An',
-      phoneNumber: '132154877',
-      birthday: '16-01-2001',
-      email: 'duyan@gmail.com',
-      gender: 'ăbudiuwqdbijhqwjkn',
-      role: 'admin'
-    },
-    {
-      lastName: 'Nguyễn',
-      firstName: 'Duy An',
-      phoneNumber: '132154877',
-      birthday: '16-01-2001',
-      email: 'duyan@gmail.com',
-      gender: 'ăbudiuwqdbijhqwjkn',
-      role: 'admin'
-    },
-    {
-      lastName: 'Nguyễn',
-      firstName: 'Duy An',
-      phoneNumber: '132154877',
-      birthday: '16-01-2001',
-      email: 'duyan@gmail.com',
-      gender: 'ăbudiuwqdbijhqwjkn',
-      role: 'admin'
-    },
-    {
-      lastName: 'Nguyễn',
-      firstName: 'Duy An',
-      phoneNumber: '132154877',
-      birthday: '16-01-2001',
-      email: 'duyan@gmail.com',
-      gender: 'ăbudiuwqdbijhqwjkn',
-      role: 'admin'
-    }
-  ]
+  useEffect(() => {
+    UserApi.getAll()
+      .then(res => {
+        console.log(res);
+        setListUser(res)
+      })
+  }, [])
 
   return (
     <div className="user-mng">
@@ -87,7 +40,7 @@ function UserManagement() {
           </tr>
         </thead>
         <tbody>
-          {listUser.map((user, i) => (
+          {listUser?.map((user, i) => (
             <tr key={i}>
               <td>{user.lastName}</td>
               <td>{user.firstName}</td>

@@ -16,9 +16,15 @@ const getListFindHouseHelper = async () => {
   return await axiosInstance.get("/posts/getListFindHouseHelper");
 }
 
+const createPost = async (data) => {
+  console.log(data);
+  return await axiosInstance.post('/posts/', data)
+}
+
 export default {
   getAll,
   getPostsAndAuthor,
   getListHouseHelper,
   getListFindHouseHelper,
+  createPost,
 }
